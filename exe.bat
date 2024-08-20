@@ -2,7 +2,7 @@
 
 mkdir build
 cd build
-cmake .. --fresh
+cmake -DCMAKE_BUILD_TYPE=Release .. --fresh
 cmake --build . --config Release
-cmake .. --fresh
+cmake -DCMAKE_BUILD_TYPE=Release .. --fresh
 cmake --build . --config Release
