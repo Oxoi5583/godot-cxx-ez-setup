@@ -19,7 +19,7 @@ file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/include/god
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/src)
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/build)
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/gdextension)
-
+write_file(${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/.gdignore "")
 
 message(${CMAKE_CURRENT_SOURCE_DIR}/build/godot-cpp/)
 
@@ -110,7 +110,10 @@ foreach(include_file ${include_files})
 endforeach(include_file)
 
 file(GLOB lib_files ${CMAKE_CURRENT_SOURCE_DIR}/godot-cpp/bin/Debug/*.a 
-                    ${CMAKE_CURRENT_SOURCE_DIR}/godot-cpp/bin/Debug/*.lib )
+                    ${CMAKE_CURRENT_SOURCE_DIR}/godot-cpp/bin/Debug/*.lib
+                    ${CMAKE_CURRENT_SOURCE_DIR}/godot-cpp/bin/Release/*.a 
+                    ${CMAKE_CURRENT_SOURCE_DIR}/godot-cpp/bin/Release/*.lib  
+                    )
 foreach(lib_file ${lib_files})
     get_filename_component(file_name ${lib_file} NAME)
     set(FM_FILE ${lib_file})
@@ -163,6 +166,8 @@ if(NOT EXISTS ${TEMPLATE_CMAKELIST_H_TO})
     string(REPLACE "../gdextension/ CACHE STRING \"Path to GDExtension interface header directory\"" "\$\{CMAKE_CURRENT_SOURCE_DIR\}/gdextension" FILE_CONTENTS ${FILE_CONTENTS})
     string(REPLACE "../ CACHE STRING \"Path to C++ bindings\"" "\$\{CMAKE_CURRENT_SOURCE_DIR\}" FILE_CONTENTS ${FILE_CONTENTS})
     string(REPLACE "project(godot-cpp-test)" "project(godot-cxx-extension)" FILE_CONTENTS ${FILE_CONTENTS})
+    string(REPLACE "\$\{CPP_BINDINGS_PATH\}/bin/" "\$\{CPP_BINDINGS_PATH\}/lib/" FILE_CONTENTS ${FILE_CONTENTS})
+
     file(WRITE ${TEMPLATE_CMAKELIST_H_TO} "${FILE_CONTENTS}")
 endif()
 
