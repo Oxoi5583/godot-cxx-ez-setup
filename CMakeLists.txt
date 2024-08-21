@@ -221,6 +221,7 @@ if(NOT EXISTS ${TEMPLATE_CMAKELIST_H_TO})
     string(REPLACE "SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE \"\$\{BUILD_PATH\}\")" "SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE \"../..\")" FILE_CONTENTS ${FILE_CONTENTS})
     string(REPLACE "# Add the compile flags" "string(TOLOWER \$\{CMAKE_SYSTEM_PROCESSOR\} CPU_TYPE)" FILE_CONTENTS ${FILE_CONTENTS})
     string(REPLACE "gdexample" "GdExtensionModule.\$\{SYSTEM_NAME\}.\$\{BUILD_TYPE\}.\$\{CPU_TYPE\}" FILE_CONTENTS ${FILE_CONTENTS})
+    string(REPLACE "set(BUILD_PATH \$\{CMAKE_SOURCE_DIR\}/bin/\$\{TARGET_PATH\})" "set(BUILD_PATH \$\{CMAKE_SOURCE_DIR\}/bin/\$\{TARGET_PATH\})\nset(CMAKE_PDB_OUTPUT_DIRECTORY \"\$\{BUILD_PATH\}\")" FILE_CONTENTS ${FILE_CONTENTS})
     file(WRITE ${TEMPLATE_CMAKELIST_H_TO} "${FILE_CONTENTS}")
 endif()
 
@@ -235,7 +236,7 @@ else()
     set(SCRIPTS_EXT ".bat")
 endif()
 set(COMPILE_SCRIPT_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/compile${SCRIPTS_EXT})
-file(WRITE ${COMPILE_SCRIPT_FILE} "cd build\ncmake -DCMAKE_BUILD_TYPE=Release .. --fresh\ncmake --build . --config Release")
+file(WRITE ${COMPILE_SCRIPT_FILE} "cd build\ncmake -DCMAKE_BUILD_TYPE=Release .. --fresh\ncmake --build . --config Release\ncmake -DCMAKE_BUILD_TYPE=Debug .. --fresh\ncmake --build . --config Debug")
 
 #Create a Readme tips
 set(README_MD_TO ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/readme.md)
