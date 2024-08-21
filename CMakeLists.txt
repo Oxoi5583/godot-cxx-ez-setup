@@ -205,10 +205,11 @@ if(NOT EXISTS ${TO_FILE})
     file(WRITE ${TO_FILE} "${FILE_CONTENTS}")
 endif()
 
-
+#Get Template CmakeLists.txt
 set(TEMPLATE_CMAKELIST_H_FM ${CMAKE_CURRENT_SOURCE_DIR}/godot-cpp/test/CMakeLists.txt)
 set(TEMPLATE_CMAKELIST_H_TO ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/CMakeLists.txt)
 
+#Modify Template CmakeLists.txt and copy to dev folder
 if(NOT EXISTS ${TEMPLATE_CMAKELIST_H_TO})
     file(READ ${TEMPLATE_CMAKELIST_H_FM} FILE_CONTENTS)
     string(REPLACE "../gdextension/ CACHE STRING \"Path to GDExtension interface header directory\"" "\$\{CMAKE_CURRENT_SOURCE_DIR\}/gdextension" FILE_CONTENTS ${FILE_CONTENTS})
@@ -223,6 +224,7 @@ if(NOT EXISTS ${TEMPLATE_CMAKELIST_H_TO})
     file(WRITE ${TEMPLATE_CMAKELIST_H_TO} "${FILE_CONTENTS}")
 endif()
 
+#Create a compile batch file
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 	set(SCRIPTS_EXT ".sh")
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
@@ -235,13 +237,14 @@ endif()
 set(COMPILE_SCRIPT_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/compile${SCRIPTS_EXT})
 file(WRITE ${COMPILE_SCRIPT_FILE} "cd build\ncmake -DCMAKE_BUILD_TYPE=Release .. --fresh\ncmake --build . --config Release")
 
-
+#Create a Readme tips
 set(README_MD_TO ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/readme.md)
 if(NOT EXISTS ${README_MD_TO})
     set(README_CONTENTS "Put This ${CMAKE_CURRENT_SOURCE_DIR}/bin folder into the godot project")
     file(WRITE ${README_MD_TO} "${README_CONTENTS}")
 endif()
 
+#Run the coping jobs
 add_dependencies(godot-cpp copy_include_files)
 add_dependencies(copy_include_files copy_lib_files)
 add_dependencies(copy_lib_files copy_src_files)
