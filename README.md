@@ -45,6 +45,7 @@ Have a nice day!
 
 If you want to test the GDExtension for your first time "gdextenisoning",
 you can just click compile.bat in ./bin/dev after exe.bat was finished.
+
 ![image](https://github.com/user-attachments/assets/a08956c9-2d08-43db-803d-140ef0fb1031)
 
 After compile.bat done working, there should be two dynamic library files(.dll) generated at ./bin . (not ./bin/dev)
@@ -57,14 +58,17 @@ windows.debug.x86_64 = "res://bin/GdExtensionModule.windows.debug.amd64.dll"
 **linux.release.x86_64 = "res://bin/libGdExtensionModule.linux.release.amd64.so"** <- add new libraries path like this
 
 The Final result should look this this image
+
 ![image](https://github.com/user-attachments/assets/6543f55e-eeee-4e2c-93a0-e2378a617862)
 
 Last but not leaset, you can open your Godot Engine and build the scene once.
+
 ![image](https://github.com/user-attachments/assets/158156f7-bc2d-49e1-94dc-e22c710f4b28)
 
 Then click "Add New Node" as usual. Search for "Example", 
 you will see a few new node types named Example blah blah blah.
 It mean you succesfully added Custom GDExtension Module into your Godot project.
+
 ![image](https://github.com/user-attachments/assets/e28f01b8-23e9-409e-8151-dc4ea38add3f)
 
 
