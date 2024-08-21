@@ -1,6 +1,6 @@
 [configuration]
 entry_symbol = "example_library_init"
-compatibility_minimum = 4.2
+compatibility_minimum = 4.3
 
 [libraries]
 windows.release.x86_64 = "res://bin/GdExtensionModule.windows.release.amd64.dll"
