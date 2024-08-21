@@ -9,17 +9,17 @@ if(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/godot-cpp)
 endif()
 
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj)
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/lib)
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/include/godot_cpp)
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/include/godot_cpp/classes)
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/include/godot_cpp/core)
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/include/godot_cpp/variant)
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/include/godot_cpp/templates)
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/src)
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/build)
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/gdextension)
-write_file(${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/.gdignore "")
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/lib)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/include/godot_cpp)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/include/godot_cpp/classes)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/include/godot_cpp/core)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/include/godot_cpp/variant)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/include/godot_cpp/templates)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/src)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/build)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/gdextension)
+write_file(${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/.gdignore "")
 
 message(${CMAKE_CURRENT_SOURCE_DIR}/build/godot-cpp/)
 
@@ -35,7 +35,7 @@ file(GLOB include_files ${CMAKE_CURRENT_SOURCE_DIR}/godot-cpp/gen/include/godot_
 foreach(include_file ${include_files})
     get_filename_component(file_name ${include_file} NAME)
     set(FM_FILE ${include_file})
-    set(TO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/include/godot_cpp/classes/${file_name})
+    set(TO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/include/godot_cpp/classes/${file_name})
     if(NOT EXISTS ${TO_FILE})
         add_custom_command(
             TARGET copy_include_files
@@ -51,7 +51,7 @@ file(GLOB include_files ${CMAKE_CURRENT_SOURCE_DIR}/godot-cpp/gen/include/godot_
 foreach(include_file ${include_files})
     get_filename_component(file_name ${include_file} NAME)
     set(FM_FILE ${include_file})
-    set(TO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/include/godot_cpp/core/${file_name})
+    set(TO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/include/godot_cpp/core/${file_name})
     if(NOT EXISTS ${TO_FILE})
         add_custom_command(
             TARGET copy_include_files
@@ -67,7 +67,7 @@ file(GLOB include_files ${CMAKE_CURRENT_SOURCE_DIR}/godot-cpp/gen/include/godot_
 foreach(include_file ${include_files})
     get_filename_component(file_name ${include_file} NAME)
     set(FM_FILE ${include_file})
-    set(TO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/include/godot_cpp/variant/${file_name})
+    set(TO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/include/godot_cpp/variant/${file_name})
     if(NOT EXISTS ${TO_FILE})
         add_custom_command(
             TARGET copy_include_files
@@ -83,7 +83,7 @@ file(GLOB include_files ${CMAKE_CURRENT_SOURCE_DIR}/godot-cpp/gen/include/godot_
 foreach(include_file ${include_files})
     get_filename_component(file_name ${include_file} NAME)
     set(FM_FILE ${include_file})
-    set(TO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/include/godot_cpp/templates/${file_name})
+    set(TO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/include/godot_cpp/templates/${file_name})
     if(NOT EXISTS ${TO_FILE})
         add_custom_command(
             TARGET copy_include_files
@@ -98,7 +98,7 @@ file(GLOB include_files ${CMAKE_CURRENT_SOURCE_DIR}/godot-cpp/include/godot_cpp/
 foreach(include_file ${include_files})
     get_filename_component(file_name ${include_file} NAME)
     set(FM_FILE ${include_file})
-    set(TO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/include/godot_cpp/${file_name})
+    set(TO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/include/godot_cpp/${file_name})
     if(NOT EXISTS ${TO_FILE})
         add_custom_command(
             TARGET copy_include_files
@@ -117,7 +117,7 @@ file(GLOB lib_files ${CMAKE_CURRENT_SOURCE_DIR}/godot-cpp/bin/Debug/*.a
 foreach(lib_file ${lib_files})
     get_filename_component(file_name ${lib_file} NAME)
     set(FM_FILE ${lib_file})
-    set(TO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/lib/${file_name})
+    set(TO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/lib/${file_name})
     if(NOT EXISTS ${TO_FILE})
         add_custom_command(
             TARGET copy_lib_files
@@ -132,7 +132,7 @@ file(GLOB template_src_files ${CMAKE_CURRENT_SOURCE_DIR}/godot-cpp/test/src/*)
 foreach(template_src_file ${template_src_files})
     get_filename_component(file_name ${template_src_file} NAME)
     set(FM_FILE ${template_src_file})
-    set(TO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/src/${file_name})
+    set(TO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/src/${file_name})
     if(NOT EXISTS ${TO_FILE})
         add_custom_command(
             TARGET copy_src_files
@@ -147,7 +147,7 @@ file(GLOB template_src_files ${CMAKE_CURRENT_SOURCE_DIR}/godot-cpp/gdextension/*
 foreach(template_src_file ${template_src_files})
     get_filename_component(file_name ${template_src_file} NAME)
     set(FM_FILE ${template_src_file})
-    set(TO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/gdextension/${file_name})
+    set(TO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/gdextension/${file_name})
     if(NOT EXISTS ${TO_FILE})
         add_custom_command(
             TARGET copy_src_files
@@ -159,7 +159,7 @@ foreach(template_src_file ${template_src_files})
 endforeach(template_src_file)
 
 set(TEMPLATE_CMAKELIST_H_FM ${CMAKE_CURRENT_SOURCE_DIR}/godot-cpp/test/CMakeLists.txt)
-set(TEMPLATE_CMAKELIST_H_TO ${CMAKE_CURRENT_SOURCE_DIR}/bin/gdextension_proj/CMakeLists.txt)
+set(TEMPLATE_CMAKELIST_H_TO ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/CMakeLists.txt)
 
 if(NOT EXISTS ${TEMPLATE_CMAKELIST_H_TO})
     file(READ ${TEMPLATE_CMAKELIST_H_FM} FILE_CONTENTS)
@@ -171,7 +171,11 @@ if(NOT EXISTS ${TEMPLATE_CMAKELIST_H_TO})
     file(WRITE ${TEMPLATE_CMAKELIST_H_TO} "${FILE_CONTENTS}")
 endif()
 
-
+set(README_MD_TO ${CMAKE_CURRENT_SOURCE_DIR}/bin/dev/readme.md)
+if(NOT EXISTS ${README_MD_TO})
+    set(README_CONTENTS "Put This ${CMAKE_CURRENT_SOURCE_DIR}/bin folder into the godot project")
+    file(WRITE ${README_MD_TO} "${README_CONTENTS}")
+endif()
 
 add_dependencies(godot-cpp copy_include_files)
 add_dependencies(copy_include_files copy_lib_files)
