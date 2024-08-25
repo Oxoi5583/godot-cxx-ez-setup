@@ -50,12 +50,12 @@ you can just click compile.bat in ./bin/dev after exe.bat was finished.
 
 After compile.bat done working, there should be two dynamic library files(.dll) generated at ./bin . (not ./bin/dev)
 which should be named as the libraries name in ./bin/GDExtensionModule.gdextension .
-If you using other platform, you add new libraries path in ./bin/GDExtensionModule.gdextension .
-                                 ↓↓↓↓↓↓↓↓↓↓↓↓
-[libraries]
-windows.release.x86_64 = "res://bin/GdExtensionModule.windows.release.amd64.dll"
-windows.debug.x86_64 = "res://bin/GdExtensionModule.windows.debug.amd64.dll"
-**linux.release.x86_64 = "res://bin/libGdExtensionModule.linux.release.amd64.so"** <- add new libraries path like this
+If you using other platform, you add new libraries path in ./bin/GDExtensionModule.gdextension .<br>
+                                 ↓↓↓↓↓↓↓↓↓↓↓↓<br>
+[libraries]<br>
+windows.release.x86_64 = "res://bin/GdExtensionModule.windows.release.amd64.dll"<br>
+windows.debug.x86_64 = "res://bin/GdExtensionModule.windows.debug.amd64.dll"<br>
+**linux.release.x86_64 = "res://bin/libGdExtensionModule.linux.release.amd64.so"** <- add new libraries path like this<br>
 
 The Final result should look this this image
 
