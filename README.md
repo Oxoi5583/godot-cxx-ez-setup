@@ -40,7 +40,7 @@ What you need to do is just Click exe.bat then cmake will do the below steps
 
 Just manually copy the whole bin folder into your Godot project.
 Then you can start writing C++ code and build your custom module by cliking compile.bat in ./bin/dev .
-Have a nice day!
+Then, Have a nice day!
 
 
 If you want to test the GDExtension for your first time "gdextenisoning",
