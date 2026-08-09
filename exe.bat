@@ -1,7 +1,13 @@
 @echo off
 
-cmake -S godot-cpp -B build -DGODOTCPP_TARGET=template_debug -DCMAKE_BUILD_TYPE=Debug
-cmake --build build --config Debug
 
-cmake -S godot-cpp -B build -DGODOTCPP_TARGET=template_release -DCMAKE_BUILD_TYPE=Release
-cmake --build build --config Release
+mkdir build
+cd build
+cmake -DGODOTCPP_TARGET=template_release -DCMAKE_BUILD_TYPE=Release .. --fresh
+cmake --build . --config Release
+cmake -DGODOTCPP_TARGET=template_release -DCMAKE_BUILD_TYPE=Release .. --fresh
+cmake --build . --config Release
+cmake -B build -DGODOTCPP_TARGET=template_debug -DCMAKE_BUILD_TYPE=Debug .. --fresh
+cmake --build . --config Debug
+cmake -B build -DGODOTCPP_TARGET=template_debug -DCMAKE_BUILD_TYPE=Debug .. --fresh
+cmake --build . --config Debug
